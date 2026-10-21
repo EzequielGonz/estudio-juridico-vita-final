@@ -1,4 +1,4 @@
-import { WHATSAPP_URL } from '@/constants/brand';
+import { whatsappUrl } from '@/constants/brand';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 
 export function FinalCta() {
@@ -12,7 +12,7 @@ export function FinalCta() {
         </div>
         <div className="final-cta-actions">
           <a className="button button-light" href="#contacto">Realizar una consulta</a>
-          <a className="button button-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+          <a className="button button-whatsapp" href={whatsappUrl('Hola VITA Abogados, quiero que revisen mi caso.')} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon size={18} /> Consultar por WhatsApp
           </a>
         </div>
