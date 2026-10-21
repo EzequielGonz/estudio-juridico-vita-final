@@ -1,0 +1,6 @@
+
+/* Nombre de la firma junto al logo (21/10) */
+.header-firm { margin-left: 12px; font-size: 15px; font-weight: 600; letter-spacing: .02em; color: var(--sapphire); white-space: nowrap; }
+@media (max-width: 1180px) { .header-firm { display: none; } }
+@media (max-width: 900px) { .header-firm { display: inline; font-size: 13px; } }
+@media (max-width: 380px) { .header-firm { display: none; } }
