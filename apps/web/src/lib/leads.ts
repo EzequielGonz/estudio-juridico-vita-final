@@ -10,7 +10,8 @@
 
 export type LeadsProvider = 'pocketbase' | 'supabase' | 'webhook' | 'none';
 
-export const LEADS_PROVIDER: LeadsProvider = 'pocketbase';
+/** Desde el 21/10 las consultas van al CRM (Supabase); el agente escribe por WhatsApp a los 5 minutos. */
+export const LEADS_PROVIDER: LeadsProvider = 'webhook';
 
 /** La anon key es pública por diseño: la seguridad la da la política RLS (solo permite insertar). */
 export const SUPABASE_CONFIG = {
@@ -19,7 +20,7 @@ export const SUPABASE_CONFIG = {
   table: 'consultas',
 };
 
-export const WEBHOOK_URL = '';
+export const WEBHOOK_URL = 'https://legal-crm-nine.vercel.app/api/landing?perfil=juridico';
 
 export type Lead = {
   nombre: string;
@@ -62,7 +63,7 @@ export async function submitLead(lead: Lead): Promise<void> {
     }
     case 'webhook': {
       if (!WEBHOOK_URL) throw new Error('Webhook sin configurar');
-      await postJson(WEBHOOK_URL, payload);
+      await postJson(WEBHOOK_URL, { ...payload, llegada: typeof document === 'undefined' ? '' : document.referrer });
       return;
     }
     default:
