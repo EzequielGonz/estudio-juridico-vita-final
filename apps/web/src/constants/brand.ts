@@ -11,29 +11,31 @@ export const BLUE_REFERENCE_URL = 'https://horizons-cdn.hostinger.com/add5b810-4
  * ========================================================================== */
 
 /** Nombre comercial de la firma. Aparece en títulos de Google, schema y footer. */
-export const FIRM_NAME = 'Estudio Jurídico';
+export const FIRM_NAME = 'VITA Abogados';
+/** Nombre largo, visible junto al logo. */
+export const FIRM_LONG_NAME = 'VITA Abogados · Estudio Jurídico';
 
 /**
  * Dominio definitivo, con https y sin barra final. Ej: 'https://www.tuestudio.com.ar'.
  * Si queda vacío se usa el dominio desde el que se visita el sitio.
  * Completarlo fija la URL canónica (evita duplicados www / sin www).
  */
-export const SITE_URL = '';
+export const SITE_URL = 'https://estudiojuridicovita.com';
 
 /** Teléfono tal como se muestra. Ej: '(011) 4000-0000'. */
-export const PHONE = '';
+export const PHONE = '11 3858-2311';
 /** Teléfono para marcar desde el celular, formato internacional. Ej: '+541140000000'. */
-export const PHONE_E164 = '';
+export const PHONE_E164 = '+5491138582311';
 
 /** WhatsApp: solo números, con código de país y 9. Ej: '5491140000000'. */
-export const WHATSAPP_NUMBER = '';
+export const WHATSAPP_NUMBER = '5491138582311';
 /** Mensaje precargado por defecto al abrir WhatsApp. */
-export const WHATSAPP_DEFAULT_MESSAGE = 'Hola, quiero realizar una consulta.';
+export const WHATSAPP_DEFAULT_MESSAGE = 'Hola VITA Abogados, quiero hacer una consulta sobre mi caso.';
 
-export const EMAIL = '';
-export const INSTAGRAM_HANDLE = ''; // Ej: '@tuestudio'
-export const INSTAGRAM_URL = '';    // Ej: 'https://www.instagram.com/tuestudio'
-export const FACEBOOK_URL = '';     // Ej: 'https://www.facebook.com/tuestudio'
+export const EMAIL = 'estudiojuridicointegralvita@gmail.com';
+export const INSTAGRAM_HANDLE = '@estudiojuridicovita';
+export const INSTAGRAM_URL = 'https://www.instagram.com/estudiojuridicovita/';
+export const FACEBOOK_URL = 'https://www.facebook.com/profile.php?id=61594866784547';
 
 /** Dirección del estudio (opcional, mejora el SEO local si coincide con Google Business). */
 export const ADDRESS = {
