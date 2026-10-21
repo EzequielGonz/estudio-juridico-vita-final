@@ -1,4 +1,4 @@
-import { WHATSAPP_URL } from '@/constants/brand';
+import { whatsappUrl } from '@/constants/brand';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 
 const topics = ['Accidentes de auto', 'Accidentes de moto', 'Lesiones', 'Reclamos', 'Indemnizaciones'];
@@ -17,7 +17,7 @@ export function Traffic() {
           <div className="topic-list">
             {topics.map(topic => <span key={topic}>{topic}</span>)}
           </div>
-          <a className="button button-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+          <a className="button button-whatsapp" href={whatsappUrl('Hola VITA Abogados, tuve un accidente de tránsito y quiero consultar mi caso.')} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon size={18} /> Consultar por WhatsApp
           </a>
         </div>
