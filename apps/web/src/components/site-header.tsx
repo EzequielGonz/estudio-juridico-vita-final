@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router';
-import { FIRM_NAME, LOGO_URL, WHATSAPP_URL } from '@/constants/brand';
+import { FIRM_LONG_NAME, FIRM_NAME, LOGO_URL, WHATSAPP_URL } from '@/constants/brand';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 
 // Las anclas llevan "/" adelante para que funcionen también desde los artículos.
@@ -53,6 +53,7 @@ export function SiteHeader() {
       <div className="header-inner">
         <a className="header-logo" href="/#inicio" aria-label={`${FIRM_NAME} — inicio`} onClick={close}>
           <img src={LOGO_URL} alt={FIRM_NAME} />
+          <span className="header-firm">{FIRM_LONG_NAME}</span>
         </a>
         <nav className="desktop-nav" aria-label="Navegación principal">
           {links.map(link => renderLink(link))}
