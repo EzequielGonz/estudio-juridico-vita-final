@@ -1,5 +1,5 @@
 import { ArrowDownRight } from 'lucide-react';
-import { LOGO_URL, WHATSAPP_URL } from '@/constants/brand';
+import { LOGO_URL, whatsappUrl } from '@/constants/brand';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 
 export function Hero() {
@@ -13,7 +13,7 @@ export function Hero() {
           <p className="hero-description">Especialistas en accidentes de tránsito y accidentes laborales. Te acompañamos y asesoramos para que conozcas tus derechos y las alternativas disponibles para tu caso.</p>
           <div className="hero-actions">
             <a className="button button-dark" href="#contacto">Realizar una consulta</a>
-            <a className="button button-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+            <a className="button button-whatsapp" href={whatsappUrl('Hola VITA Abogados, quiero hacer una consulta sobre mi caso.')} target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon size={18} /> Consultar por WhatsApp
             </a>
           </div>
