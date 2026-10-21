@@ -2,7 +2,7 @@ import { ArrowUpRight, Check, MessageCircle } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { submitLead } from '@/lib/leads';
 import { track } from '@/lib/track';
-import { WHATSAPP_URL } from '@/constants/brand';
+import { whatsappUrl } from '@/constants/brand';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 
 type FormValues = { nombre: string; apellido: string; telefono: string; email: string; tipo: string; descripcion: string };
@@ -80,7 +80,7 @@ export function Contact() {
           </div>
           <div className="whatsapp-option">
             <span>¿Preferís escribirnos directamente?</span>
-            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+            <a href={whatsappUrl('Hola VITA Abogados, quiero dejar mi consulta.')} target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon size={18} /> Consultar por WhatsApp <ArrowUpRight size={16} strokeWidth={1.5} />
             </a>
           </div>
