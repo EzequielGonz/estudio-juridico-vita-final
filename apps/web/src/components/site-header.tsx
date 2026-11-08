@@ -52,7 +52,7 @@ export function SiteHeader() {
     <header className={`site-header ${visible || menuOpen ? 'is-visible' : 'is-hidden'} ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="header-inner">
         <a className="header-logo" href="/#inicio" aria-label={`${FIRM_NAME} — inicio`} onClick={close}>
-          <img src={LOGO_URL} alt={FIRM_NAME} />
+          <img src={LOGO_URL} alt={FIRM_NAME} width="545" height="545" />
           <span className="header-firm">{FIRM_LONG_NAME}</span>
         </a>
         <nav className="desktop-nav" aria-label="Navegación principal">

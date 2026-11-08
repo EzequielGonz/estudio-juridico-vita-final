@@ -1,5 +1,5 @@
 import type { MetaDescriptor } from 'react-router';
-import { FIRM_NAME, LOGO_URL } from '@/constants/brand';
+import { FIRM_NAME, SHARE_IMAGE_URL } from '@/constants/brand';
 import type { PageData } from '@/content/types';
 import { articleSchema, breadcrumbSchema, faqSchema, legalServiceSchema } from '@/lib/schema';
 import { seo, siteOriginFrom, type SeoArgs } from '@/lib/seo';
@@ -29,7 +29,7 @@ export function pageMeta(args: SeoArgs, data: PageData | undefined): MetaDescrip
     title: withBrand(page.title),
     description: page.description,
     path: page.path,
-    image: LOGO_URL,
+    image: SHARE_IMAGE_URL,
     type: page.kind === 'pilar' ? 'website' : 'article',
     jsonLd,
   });

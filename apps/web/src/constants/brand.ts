@@ -1,5 +1,8 @@
-export const LOGO_URL = 'https://horizons-cdn.hostinger.com/add5b810-45d5-469b-9c77-e0a496f798a9/c7b97c5a33b71ed336e8f7a4c5f77c60.png';
-export const LOGO_TRANSPARENT_URL = 'https://images.hostinger.com/bc3f1cef-f13c-432a-99e4-ec494e9da23f.png';
+/** Logo servido desde el propio sitio (el CDN de Hostinger dejó de responder). */
+export const LOGO_URL = '/logo-marca.png';
+export const LOGO_TRANSPARENT_URL = '/logo-marca.png';
+/** Imagen para compartir el enlace (WhatsApp, redes): 1200 × 630. */
+export const SHARE_IMAGE_URL = '/img/og-compartir.jpg';
 export const PALETTE_REFERENCE_URL = 'https://horizons-cdn.hostinger.com/add5b810-45d5-469b-9c77-e0a496f798a9/ddd7e84fe0a32a41c4ca25ed88766b20.jpg';
 export const BLUE_REFERENCE_URL = 'https://horizons-cdn.hostinger.com/add5b810-45d5-469b-9c77-e0a496f798a9/30f015740ddfb8ac65a5c0d3e3a062f3.png';
 // Referencias de identidad: PALETTE_REFERENCE_URL y BLUE_REFERENCE_URL definen los tonos CSS, no son contenido visual de la página.
@@ -21,6 +24,8 @@ export const FIRM_LONG_NAME = 'VITA Abogados · Estudio Jurídico';
  * Completarlo fija la URL canónica (evita duplicados www / sin www).
  */
 export const SITE_URL = 'https://estudiojuridicovita.com';
+/** Logo con dominio completo, para los datos estructurados. */
+export const LOGO_ABSOLUTE_URL = `${SITE_URL}${LOGO_URL}`;
 
 /** Teléfono tal como se muestra. Ej: '(011) 4000-0000'. */
 export const PHONE = '11 3858-2311';
@@ -56,7 +61,7 @@ export const REVIEWER = { name: '', matricula: '' };
 export const VERIFICATION = { google: '', bing: '' };
 
 /** Clave de IndexNow (Bing, Yandex y otros indexan al instante). Letras y números, 32 caracteres. */
-export const INDEXNOW_KEY = '';
+export const INDEXNOW_KEY = 'c092abc96ff50bd6c30bfc57c90c3b6c';
 
 /* ======================= Derivados — no hace falta editar ======================= */
 

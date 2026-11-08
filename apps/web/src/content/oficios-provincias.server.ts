@@ -1,5 +1,9 @@
 import type { Page } from './types';
 
+/** Recorta una descripción sin cortar palabras a la mitad (Google muestra ~160 caracteres). */
+const recortar = (texto: string, max = 160): string => (texto.length <= max ? texto : `${texto.slice(0, max - 1).replace(/[\s,.;:]+\S*$/, '')}…`);
+
+
 const D = '2026-09-28';
 const L = '/accidentes-laborales';
 
@@ -147,7 +151,7 @@ function oficioToPage(o: Oficio): Page {
     updated: D,
     path: `${L}/${o.slug}`,
     title: o.titulo,
-    description: `${o.intro.split('. ')[0]}. Qué cubre la ART y cómo reclamar tu indemnización.`.slice(0, 160),
+    description: recortar(`${o.intro.split('. ')[0]}. Qué cubre la ART y cómo reclamar tu indemnización.`),
     label: `Accidentes laborales en ${o.nombre.toLowerCase()}`,
     h1: 'Accidentes laborales',
     h1Em: o.h1Em,

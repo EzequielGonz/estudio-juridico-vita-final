@@ -2,7 +2,7 @@
  * Datos estructurados (JSON-LD) para Google y otros buscadores. No se ven en la
  * página: le dicen al buscador qué es el estudio, dónde trabaja y qué es cada artículo.
  */
-import { ADDRESS, EMAIL, FIRM_NAME, LOGO_URL, PHONE, REVIEWER, SOCIAL_LINKS } from '@/constants/brand';
+import { ADDRESS, EMAIL, FIRM_NAME, LOGO_ABSOLUTE_URL, PHONE, REVIEWER, SOCIAL_LINKS } from '@/constants/brand';
 
 const CONTEXT = 'https://schema.org';
 
@@ -16,8 +16,8 @@ export function legalServiceSchema(origin: string) {
     '@id': firmId(origin),
     name: FIRM_NAME,
     url: `${origin}/`,
-    logo: LOGO_URL,
-    image: LOGO_URL,
+    logo: LOGO_ABSOLUTE_URL,
+    image: LOGO_ABSOLUTE_URL,
     telephone: PHONE || undefined,
     email: EMAIL || undefined,
     priceRange: '$$',
@@ -88,7 +88,7 @@ export function articleSchema(
     inLanguage: 'es-AR',
     datePublished: article.published,
     dateModified: article.updated,
-    image: LOGO_URL,
+    image: LOGO_ABSOLUTE_URL,
     author: REVIEWER.name
       ? { '@type': 'Person', name: REVIEWER.name, worksFor: { '@id': firmId(origin) } }
       : { '@id': firmId(origin) },

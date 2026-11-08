@@ -1,6 +1,6 @@
 import type { Route } from './+types/home';
 import { seo, siteOriginFrom } from '@/lib/seo';
-import { FIRM_NAME, LOGO_URL } from '@/constants/brand';
+import { FIRM_NAME, SHARE_IMAGE_URL } from '@/constants/brand';
 import { legalServiceSchema, websiteSchema } from '@/lib/schema';
 import { Hero } from '@/components/home/hero';
 import { Specialties } from '@/components/home/specialties';
@@ -17,7 +17,7 @@ export function meta({ matches, location }: Route.MetaArgs) {
   return seo({ matches, location }, {
     title: `Abogados de accidentes de tránsito y laborales | ${FIRM_NAME}`,
     description: 'Abogados de accidentes de tránsito en CABA y GBA y de accidentes laborales y reclamos a la ART en todo el país. Conocé tus derechos y consultá tu caso.',
-    image: LOGO_URL,
+    image: SHARE_IMAGE_URL,
     jsonLd: [legalServiceSchema(origin), websiteSchema(origin)],
   });
 }

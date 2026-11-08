@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="footer-main shell">
         <div className="footer-brand">
           <a className="footer-logo" href="/#inicio" aria-label={`${FIRM_NAME} — inicio`}>
-            <img src={LOGO_URL} alt={FIRM_NAME} />
+            <img src={LOGO_URL} alt={FIRM_NAME} width="545" height="545" />
           </a>
           <p>Orientación legal clara y cercana en accidentes de tránsito y accidentes laborales.</p>
         </div>

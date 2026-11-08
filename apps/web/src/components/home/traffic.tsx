@@ -8,7 +8,7 @@ export function Traffic() {
     <section className="feature-section feature-traffic" id="transito">
       <div className="shell feature-grid">
         <div className="feature-image">
-          <img src="https://images.unsplash.com/photo-1642755062298-3e40b75db3dc?w=1280&h=832&fit=crop&q=80" alt="Avenida tranquila al anochecer con un auto estacionado" loading="lazy" />
+          <img src="/img/avenida-anochecer.webp" width="1280" height="832" alt="Avenida tranquila al anochecer con un auto estacionado" loading="lazy" />
         </div>
         <div className="feature-copy">
           <p className="section-label">Accidentes de tránsito</p>

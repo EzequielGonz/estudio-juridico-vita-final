@@ -19,7 +19,7 @@ export function Workplace() {
           </a>
         </div>
         <div className="feature-image">
-          <img src="https://images.unsplash.com/photo-1586151140119-e251698be8dd?w=1280&h=832&fit=crop&q=80" alt="Casco de seguridad y chaleco sobre un banco de trabajo" loading="lazy" />
+          <img src="/img/casco-seguridad.webp" width="1280" height="832" alt="Casco de seguridad y chaleco sobre un banco de trabajo" loading="lazy" />
         </div>
       </div>
     </section>

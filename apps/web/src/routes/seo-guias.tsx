@@ -7,6 +7,7 @@ import { getGuiasHub } from '@/content/index.server';
 import { withBrand } from '@/lib/page-meta';
 import { breadcrumbSchema, legalServiceSchema } from '@/lib/schema';
 import { seo, siteOriginFrom } from '@/lib/seo';
+import { SHARE_IMAGE_URL } from '@/constants/brand';
 
 const PATH = '/guias';
 const BREADCRUMBS = [{ name: 'Inicio', path: '/' }, { name: 'Guías', path: PATH }];
@@ -22,6 +23,7 @@ export function meta({ matches, location }: Route.MetaArgs) {
     title: withBrand('Guías sobre accidentes de tránsito y laborales'),
     description: 'Guías claras sobre accidentes de tránsito en Buenos Aires y accidentes laborales en todo el país: ART, indemnizaciones, plazos y cómo reclamar.',
     path: PATH,
+    image: SHARE_IMAGE_URL,
     jsonLd: [legalServiceSchema(origin), breadcrumbSchema(origin, BREADCRUMBS)],
   });
 }

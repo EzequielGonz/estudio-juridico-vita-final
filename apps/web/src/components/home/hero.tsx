@@ -20,7 +20,7 @@ export function Hero() {
           <p className="hero-trust"><span className="trust-mark" /> Orientación profesional y confidencial para tu caso.</p>
         </div>
         <div className="hero-visual" aria-label="Emblema de la Justicia">
-          <div className="hero-visual-frame"><img src={LOGO_URL} alt="Emblema dorado de la Justicia" /></div>
+          <div className="hero-visual-frame"><img src={LOGO_URL} alt="Emblema dorado de la Justicia" width="545" height="545" fetchPriority="high" /></div>
         </div>
       </div>
       <div className="hero-bottom shell">
