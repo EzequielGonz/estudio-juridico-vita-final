@@ -23,7 +23,7 @@ export const FIRM_LONG_NAME = 'VITA Abogados · Estudio Jurídico';
  * Si queda vacío se usa el dominio desde el que se visita el sitio.
  * Completarlo fija la URL canónica (evita duplicados www / sin www).
  */
-export const SITE_URL = 'https://estudiojuridicovita.com';
+export const SITE_URL = 'https://www.estudiojuridicovita.com';
 /** Logo con dominio completo, para los datos estructurados. */
 export const LOGO_ABSOLUTE_URL = `${SITE_URL}${LOGO_URL}`;
 
