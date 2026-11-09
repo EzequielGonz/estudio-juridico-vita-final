@@ -29,6 +29,45 @@ function curva(R: number, a: number, k: number, fase: number, pasos = 720) {
 
 export function Sello() {
   const trazos = useRef<SVGGElement>(null);
+  const lienzo = useRef<HTMLCanvasElement>(null);
+  const caja = useRef<HTMLDivElement>(null);
+
+  // Medalla 3D: se carga con la primera interacción (mover el mouse, tocar, desplazar o usar el teclado),
+  // para no competir con el contenido. Sin WebGL o con «reducir movimiento» queda el sello 2D.
+  useEffect(() => {
+    const canvas = lienzo.current;
+    if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let cancelado = false;
+    let destruir: (() => void) | undefined;
+    const eventos = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'pointermove', 'keydown'] as const;
+    const iniciar = async () => {
+      eventos.forEach(e => window.removeEventListener(e, iniciar));
+      if (cancelado || destruir) return;
+      const prueba = document.createElement('canvas');
+      if (!prueba.getContext('webgl2') && !prueba.getContext('webgl')) return;
+      const [THREE, { RoomEnvironment }, { crearMedalla }] = await Promise.all([
+        import('three'),
+        import('three/examples/jsm/environments/RoomEnvironment.js'),
+        import('@/lib/medalla-3d'),
+      ]);
+      const figura = new Image();
+      figura.src = '/img/justicia.webp';
+      await Promise.all([figura.decode(), document.fonts.load('400 120px "Playfair Display"')]);
+      if (cancelado) return;
+      try {
+        destruir = crearMedalla(THREE, RoomEnvironment, canvas, { figura, fuente: '"Playfair Display", Georgia, serif' }).destruir;
+        requestAnimationFrame(() => caja.current?.classList.add('is-3d'));
+      } catch {
+        // si el navegador no puede crear el contexto 3D, queda el sello 2D
+      }
+    };
+    eventos.forEach(e => window.addEventListener(e, iniciar, { passive: true, once: true }));
+    return () => {
+      cancelado = true;
+      eventos.forEach(e => window.removeEventListener(e, iniciar));
+      destruir?.();
+    };
+  }, []);
 
   useEffect(() => {
     const g = trazos.current;
@@ -52,7 +91,8 @@ export function Sello() {
   }, []);
 
   return (
-    <div className="sello" aria-hidden="true">
+    <div className="sello" aria-hidden="true" ref={caja}>
+      <canvas className="sello-3d" ref={lienzo} />
       <svg className="sello-guilloche" viewBox="-280 -280 560 560" focusable="false">
         <g ref={trazos} />
       </svg>

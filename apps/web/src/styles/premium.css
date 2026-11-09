@@ -195,6 +195,15 @@ html.menu-abierto { overflow: hidden; }
 @keyframes barrido { 0% { background-position: 115% 0; } 30%, 100% { background-position: -15% 0; } }
 @keyframes figura-aparece { from { opacity: 0; transform: translate(-50%, -47%) scale(.96); } to { opacity: 1; transform: translate(-50%, -51%); } }
 
+/* Medalla 3D: reemplaza al sello 2D cuando carga. Se puede girar con el dedo; el
+   desplazamiento vertical de la página sigue funcionando. */
+.sello-3d { position: absolute; inset: -4%; z-index: 2; width: 108%; height: 108%; opacity: 0; transition: opacity 1.2s ease; touch-action: pan-y; cursor: grab; }
+.sello-3d:active { cursor: grabbing; }
+.sello.is-3d .sello-3d { opacity: 1; }
+.sello .sello-guilloche, .sello .sello-figura { transition: opacity .9s ease; }
+.sello.is-3d .sello-figura > * { opacity: 0; transition: opacity .9s ease; }
+.sello.is-3d .sello-guilloche { opacity: .35; }
+
 /* ---------- Bloques comunes ---------- */
 .seccion { position: relative; padding: clamp(92px, 11vw, 150px) 0; }
 .seccion h2, .contact h2, .cierre h2 { margin: 0 0 22px; font-size: clamp(40px, 4.3vw, 66px); line-height: 1.05; letter-spacing: -.026em; font-weight: 400; text-wrap: balance; }
