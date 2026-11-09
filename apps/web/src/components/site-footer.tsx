@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 import { Facebook, Instagram, Mail, Phone } from 'lucide-react';
-import { LOGO_URL, WHATSAPP_URL, PHONE, PHONE_URL, EMAIL, INSTAGRAM_URL, INSTAGRAM_HANDLE, FACEBOOK_URL, FIRM_NAME } from '@/constants/brand';
+import { WHATSAPP_URL, PHONE, PHONE_URL, EMAIL, INSTAGRAM_URL, INSTAGRAM_HANDLE, FACEBOOK_URL, FIRM_NAME } from '@/constants/brand';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 
 export function SiteFooter() {
@@ -9,8 +9,8 @@ export function SiteFooter() {
       <div className="footer-main shell">
         <div className="footer-brand">
           <a className="footer-logo" href="/#inicio" aria-label={`${FIRM_NAME}, volver al inicio`}>
-            <img src={LOGO_URL} alt="" width="266" height="358" loading="lazy" />
-            <span className="footer-name">VITA Abogados<small>Estudio Jurídico</small></span>
+            <img src="/img/justicia-chica.webp" alt="" width="71" height="96" loading="lazy" />
+            <span className="footer-name">VITA Abogados<small>Estudio jurídico</small></span>
           </a>
           <p>Accidentes de tránsito en CABA y GBA. Accidentes laborales y reclamos a la ART en todo el país.</p>
           <a className="footer-cta" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
@@ -26,7 +26,7 @@ export function SiteFooter() {
         </nav>
         <nav className="footer-column" aria-label="El estudio">
           <h3>El estudio</h3>
-          <a href="/#nosotros">Nuestro enfoque</a>
+          <a href="/#antes-de-firmar">Antes de firmar</a>
           <a href="/#proceso">Cómo trabajamos</a>
           <a href="/#contacto">Hacer una consulta</a>
         </nav>
@@ -39,7 +39,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="footer-bottom shell">
-        <span>© {new Date().getFullYear()} VITA Abogados · Estudio Jurídico</span>
+        <span>© {new Date().getFullYear()} VITA Abogados. Estudio jurídico.</span>
         <a href="#inicio" className="footer-top">Volver arriba ↑</a>
       </div>
     </footer>

@@ -3,14 +3,13 @@ import { seo, siteOriginFrom } from '@/lib/seo';
 import { FIRM_NAME, SHARE_IMAGE_URL } from '@/constants/brand';
 import { legalServiceSchema, websiteSchema } from '@/lib/schema';
 import { Hero } from '@/components/home/hero';
-import { Specialties } from '@/components/home/specialties';
 import { Traffic } from '@/components/home/traffic';
 import { Workplace } from '@/components/home/workplace';
-import { Approach } from '@/components/home/approach';
+import { AntesDeFirmar } from '@/components/home/antes-de-firmar';
 import { Process } from '@/components/home/process';
 import { Contact } from '@/components/home/contact';
 import { FinalCta } from '@/components/home/final-cta';
-import { ScrollReveal } from '@/components/home/scroll-reveal';
+import { Movimiento } from '@/components/home/movimiento';
 
 export function meta({ matches, location }: Route.MetaArgs) {
   const origin = siteOriginFrom(matches);
@@ -23,5 +22,5 @@ export function meta({ matches, location }: Route.MetaArgs) {
 }
 
 export default function HomePage() {
-  return <main><ScrollReveal /><Hero /><Specialties /><Traffic /><Workplace /><Approach /><Process /><Contact /><FinalCta /></main>;
+  return <main><Movimiento /><Hero /><Traffic /><Workplace /><AntesDeFirmar /><Process /><Contact /><FinalCta /></main>;
 }

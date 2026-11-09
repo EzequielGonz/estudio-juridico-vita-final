@@ -71,12 +71,8 @@ export function Contact() {
     <section className="contact section-space" id="contacto">
       <div className="shell contact-grid">
         <div className="contact-intro">
-          <h2>Contanos <em>tu caso.</em></h2>
+          <h2 className="revela">Contanos tu caso</h2>
           <p>Completá el formulario y nos pondremos en contacto para conocer tu situación.</p>
-          <div className="contact-aside">
-            <span className="aside-line" />
-            <p>El primer paso es poder conversar sobre lo que te pasó.</p>
-          </div>
           <div className="whatsapp-option">
             <span>¿Preferís escribirnos directamente?</span>
             <a href={whatsappUrl('Hola VITA Abogados, quiero dejar mi consulta.')} target="_blank" rel="noopener noreferrer">

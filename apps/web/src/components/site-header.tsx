@@ -1,78 +1,112 @@
-import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router';
-import { FIRM_LONG_NAME, LOGO_URL, WHATSAPP_URL } from '@/constants/brand';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router';
+import { PHONE, PHONE_URL, WHATSAPP_URL } from '@/constants/brand';
 import { WhatsAppIcon } from '@/components/whatsapp-icon';
 
 // Las anclas llevan "/" adelante para que funcionen también desde los artículos.
-// Las dos áreas (route: true) llevan a los pilares de cada silo.
-// `short` se muestra en pantallas medianas; `hide` indica desde qué ancho se
-// oculta en la barra de escritorio para que el menú nunca se apile (sigue
-// disponible en el menú mobile y en el footer).
-type NavLink = { href: string; label: string; short?: string; route?: boolean; hide?: 'lg' | 'md' };
+// `corto` se usa en pantallas medianas para que la barra nunca se apile.
+type Enlace = { href: string; texto: string; corto?: string; ruta?: boolean };
 
-const links: NavLink[] = [
-  { href: '/accidentes-de-transito', label: 'Accidentes de tránsito', short: 'Tránsito', route: true },
-  { href: '/accidentes-laborales', label: 'Accidentes laborales', short: 'Laborales', route: true },
-  { href: '/#nosotros', label: 'Nuestro enfoque', hide: 'lg' },
-  { href: '/#proceso', label: 'Cómo trabajamos', hide: 'md' },
-  { href: '/#contacto', label: 'Contacto' },
+const enlaces: Enlace[] = [
+  { href: '/accidentes-de-transito', texto: 'Accidentes de tránsito', corto: 'Tránsito', ruta: true },
+  { href: '/accidentes-laborales', texto: 'Accidentes laborales', corto: 'Laborales', ruta: true },
+  { href: '/#antes-de-firmar', texto: 'Antes de firmar' },
+  { href: '/#contacto', texto: 'Contacto' },
 ];
 
 export function SiteHeader() {
+  const { pathname } = useLocation();
+  const enPortada = pathname === '/';
   const [visible, setVisible] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [abierto, setAbierto] = useState(false);
+  const [desplazado, setDesplazado] = useState(false);
+  const boton = useRef<HTMLButtonElement>(null);
+  const menu = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let previous = window.scrollY;
-    const onScroll = () => {
-      const current = window.scrollY;
-      setScrolled(current > 24);
-      if (Math.abs(current - previous) > 4) setVisible(current < 80 || current < previous);
-      previous = current;
+    let anterior = window.scrollY;
+    const alDesplazar = () => {
+      const actual = window.scrollY;
+      setDesplazado(actual > 24);
+      if (Math.abs(actual - anterior) > 4) setVisible(actual < 120 || actual < anterior);
+      anterior = actual;
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    alDesplazar();
+    window.addEventListener('scroll', alDesplazar, { passive: true });
+    return () => window.removeEventListener('scroll', alDesplazar);
   }, []);
 
-  const close = () => setMenuOpen(false);
-  const renderLink = (link: NavLink, mobile = false) => {
-    const onClick = mobile ? close : undefined;
-    const className = !mobile && link.hide ? `nav-hide-${link.hide}` : undefined;
-    const content = !mobile && link.short
-      ? <><span className="nav-full">{link.label}</span><span className="nav-short">{link.short}</span></>
-      : link.label;
-    return link.route
-      ? <Link key={link.href} className={className} to={link.href} prefetch="intent" onClick={onClick}>{content}</Link>
-      : <a key={link.href} className={className} href={link.href} onClick={onClick}>{content}</a>;
+  // Menú del celular: bloquea el desplazamiento de fondo, se cierra con Escape
+  // y devuelve el foco al botón.
+  useEffect(() => {
+    if (!abierto) return;
+    const raiz = document.documentElement;
+    raiz.classList.add('menu-abierto');
+    menu.current?.querySelector<HTMLElement>('a')?.focus();
+    const alTeclear = (evento: KeyboardEvent) => { if (evento.key === 'Escape') setAbierto(false); };
+    window.addEventListener('keydown', alTeclear);
+    return () => {
+      raiz.classList.remove('menu-abierto');
+      window.removeEventListener('keydown', alTeclear);
+      boton.current?.focus();
+    };
+  }, [abierto]);
+
+  const cerrar = () => setAbierto(false);
+  const enlace = (item: Enlace, movil = false) => {
+    const contenido = !movil && item.corto
+      ? <><span className="nav-largo">{item.texto}</span><span className="nav-corto">{item.corto}</span></>
+      : item.texto;
+    const alHacerClic = movil ? cerrar : undefined;
+    return item.ruta
+      ? <Link key={item.href} to={item.href} prefetch="intent" onClick={alHacerClic}>{contenido}</Link>
+      : <a key={item.href} href={item.href} onClick={alHacerClic}>{contenido}</a>;
   };
 
+  const clases = [
+    'cabecera',
+    visible || abierto ? 'is-visible' : 'is-oculta',
+    desplazado || !enPortada || abierto ? 'is-solida' : '',
+  ].join(' ');
+
   return (
-    <header className={`site-header ${visible || menuOpen ? 'is-visible' : 'is-hidden'} ${scrolled ? 'is-scrolled' : ''}`}>
-      <div className="header-inner">
-        <a className="header-logo" href="/#inicio" onClick={close}>
-          <img src={LOGO_URL} alt="" width="266" height="358" />
-          <span className="header-firm">{FIRM_LONG_NAME}</span>
+    <>
+    <header className={clases}>
+      <div className="cabecera-barra">
+        <a className="cabecera-marca" href="/#inicio" onClick={cerrar} aria-label="VITA Abogados, ir al inicio">
+          <img src="/img/justicia-chica.webp" alt="" width="71" height="96" />
+          <span className="cabecera-nombre">VITA Abogados<small>Estudio jurídico</small></span>
         </a>
-        <nav className="desktop-nav" aria-label="Navegación principal">
-          {links.map(link => renderLink(link))}
+        <nav className="cabecera-nav" aria-label="Navegación principal">
+          {enlaces.map(item => enlace(item))}
         </nav>
-        <a className="header-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-          <WhatsAppIcon size={17} /> Consultar por WhatsApp
+        <a className="cabecera-wa" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+          <WhatsAppIcon size={17} /> <span>WhatsApp</span>
         </a>
-        <button className="menu-toggle" type="button" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
+        <button
+          ref={boton}
+          className={`cabecera-menu ${abierto ? 'is-abierto' : ''}`}
+          type="button"
+          aria-label={abierto ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={abierto}
+          aria-controls="menu-movil"
+          onClick={() => setAbierto(!abierto)}
+        >
+          <span /><span />
         </button>
       </div>
-      {menuOpen && (
-        <nav className="mobile-nav" aria-label="Navegación móvil">
-          {links.map(link => renderLink(link, true))}
-          <a className="mobile-nav-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={close}>
-            <WhatsAppIcon size={18} /> Consultar por WhatsApp
-          </a>
-        </nav>
-      )}
     </header>
+      <div id="menu-movil" ref={menu} className={`menu-movil ${abierto ? 'is-abierto' : ''}`} hidden={!abierto}>
+        <nav aria-label="Navegación móvil">
+          {enlaces.map(item => enlace(item, true))}
+        </nav>
+        <div className="menu-movil-pie">
+          <a className="menu-movil-wa" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={cerrar}>
+            <WhatsAppIcon size={19} /> Escribinos por WhatsApp
+          </a>
+          {PHONE && PHONE_URL && <a className="menu-movil-tel" href={PHONE_URL}>{PHONE}</a>}
+        </div>
+      </div>
+    </>
   );
 }
