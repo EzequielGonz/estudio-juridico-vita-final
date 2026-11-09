@@ -12,13 +12,16 @@ export function Movimiento() {
     let cancelado = false;
     let deshacer: (() => void) | undefined;
 
+    let modulos: Promise<[typeof import('gsap'), typeof import('gsap/ScrollTrigger'), typeof import('gsap/SplitText'), typeof import('gsap/DrawSVGPlugin')]> | undefined;
+    const cargar = () => modulos ??= Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger'),
+      import('gsap/SplitText'),
+      import('gsap/DrawSVGPlugin'),
+    ]);
+
     const iniciar = async () => {
-      const [{ gsap }, { ScrollTrigger }, { SplitText }, { DrawSVGPlugin }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-        import('gsap/SplitText'),
-        import('gsap/DrawSVGPlugin'),
-      ]);
+      const [{ gsap }, { ScrollTrigger }, { SplitText }, { DrawSVGPlugin }] = await cargar();
       if (cancelado) return;
       gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 
@@ -133,14 +136,29 @@ export function Movimiento() {
     // Se carga con la primera interacción: las animaciones dependen del desplazamiento,
     // así que no hace falta sumar trabajo mientras la página termina de cargar.
     const eventos = ['scroll', 'wheel', 'touchstart', 'pointerdown', 'keydown'] as const;
+    // Si la primera interacción es un ancla con desplazamiento suave, armar ScrollTrigger
+    // en el medio lo corta: los módulos se descargan ya, pero se arman cuando la página
+    // deja de moverse.
+    let quieto = 0;
+    const alMoverse = () => {
+      window.clearTimeout(quieto);
+      quieto = window.setTimeout(() => {
+        window.removeEventListener('scroll', alMoverse);
+        if (!cancelado) void iniciar();
+      }, 220);
+    };
     const alInteractuar = () => {
       eventos.forEach(evento => window.removeEventListener(evento, alInteractuar));
-      void iniciar();
+      void cargar();
+      window.addEventListener('scroll', alMoverse, { passive: true });
+      alMoverse();
     };
     eventos.forEach(evento => window.addEventListener(evento, alInteractuar, { passive: true }));
 
     return () => {
       cancelado = true;
+      window.clearTimeout(quieto);
+      window.removeEventListener('scroll', alMoverse);
       eventos.forEach(evento => window.removeEventListener(evento, alInteractuar));
       deshacer?.();
     };
