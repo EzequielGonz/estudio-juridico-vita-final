@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
-import { FIRM_NAME, REVIEWER } from '@/constants/brand';
+import { REVIEWER } from '@/constants/brand';
 import { CTA } from '@/constants/cta';
-import { formatDate } from '@/lib/text';
 import { ContactButtons } from './contact-buttons';
 
 type Props = {
@@ -16,24 +15,15 @@ type Props = {
 };
 
 /** Cabecera de artículo: mismas etiquetas, tipografía y botones que el hero de la home. */
-export function DocHero({ h1, h1Em, lead, breadcrumbs, updated, origen, whatsappMessage }: Props) {
-  const byline = REVIEWER.name
-    ? `Revisado por ${REVIEWER.name}${REVIEWER.matricula ? `, ${REVIEWER.matricula}` : ''}`
-    : `Equipo legal de ${FIRM_NAME}`;
+export function DocHero({ h1, h1Em, lead, breadcrumbs, origen, whatsappMessage }: Props) {
+  // Solo se muestra quién revisó la guía cuando hay una profesional o un profesional cargado en brand.ts.
+  const byline = `Revisado por ${REVIEWER.name}${REVIEWER.matricula ? `, ${REVIEWER.matricula}` : ''}`;
 
   return (
     <section className="doc-hero">
       <div className="shell">
         <div className="doc-hero-inner">
-        <nav className="doc-breadcrumb" aria-label="Ruta de navegación">
-          <ol>
-            {breadcrumbs.map((crumb, index) => (
-              <li key={crumb.path}>
-                {index < breadcrumbs.length - 1 ? <Link to={crumb.path}>{crumb.name}</Link> : <span aria-current="page">{crumb.name}</span>}
-              </li>
-            ))}
-          </ol>
-        </nav>
+        {breadcrumbs.length > 1 && <Link className="doc-volver" to={breadcrumbs[breadcrumbs.length - 2].path}>← {breadcrumbs[breadcrumbs.length - 2].name}</Link>}
         <h1>{h1} {h1Em && <em>{h1Em}</em>}</h1>
         <p className="doc-lead">{lead}</p>
         <div className="hero-actions">
@@ -47,10 +37,7 @@ export function DocHero({ h1, h1Em, lead, breadcrumbs, updated, origen, whatsapp
         </div>
         </div>
       </div>
-      <div className="doc-meta shell">
-        <span>{byline}</span>
-        {updated && <span>Actualizado el <time dateTime={updated}>{formatDate(updated)}</time></span>}
-      </div>
+      {REVIEWER.name && <div className="doc-meta shell"><span>{byline}</span></div>}
     </section>
   );
 }
