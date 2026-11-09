@@ -12,7 +12,6 @@ export function Approach() {
     <section className="approach section-space" id="nosotros">
       <div className="shell approach-inner">
         <div className="approach-heading">
-          <p className="section-label">Nuestro enfoque</p>
           <h2>Un acompañamiento legal <em>claro, profesional y cercano.</em></h2>
           <p>Sabemos que cada situación es distinta. Por eso, empezamos por escucharte.</p>
         </div>

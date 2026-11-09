@@ -71,7 +71,6 @@ export function Contact() {
     <section className="contact section-space" id="contacto">
       <div className="shell contact-grid">
         <div className="contact-intro">
-          <p className="section-label">Contacto</p>
           <h2>Contanos <em>tu caso.</em></h2>
           <p>Completá el formulario y nos pondremos en contacto para conocer tu situación.</p>
           <div className="contact-aside">

@@ -102,7 +102,6 @@ export function LeadForm({ tipo, origen, whatsappMessage }: Props) {
     <section className="contact section-space" id="consulta">
       <div className="shell contact-grid">
         <div className="contact-intro">
-          <p className="section-label">{CTA.form.label}</p>
           <h2>{CTA.form.title} <em>{CTA.form.titleEm}</em></h2>
           <p>{CTA.form.intro}</p>
           <div className="contact-aside">

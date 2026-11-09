@@ -7,7 +7,6 @@ export function ArticleFinalCta({ whatsappMessage, origen }: { whatsappMessage: 
     <section className="final-cta">
       <div className="shell final-cta-inner">
         <div>
-          <p className="section-label section-label-light">{CTA.final.label}</p>
           <h2>{CTA.final.title} <em>{CTA.final.titleEm}</em></h2>
           <p>{CTA.final.text}</p>
         </div>

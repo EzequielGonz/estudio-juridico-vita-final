@@ -6,7 +6,6 @@ export function FinalCta() {
     <section className="final-cta">
       <div className="shell final-cta-inner">
         <div>
-          <p className="section-label section-label-light">Estamos para escucharte</p>
           <h2>Tu situación merece <em>ser escuchada.</em></h2>
           <p>Contanos qué ocurrió y recibí orientación sobre las alternativas disponibles para tu caso.</p>
         </div>

@@ -8,7 +8,6 @@ export function Workplace() {
     <section className="feature-section feature-workplace" id="laborales">
       <div className="shell feature-grid">
         <div className="feature-copy">
-          <p className="section-label">Accidentes laborales</p>
           <h2>¿Tuviste un accidente <em>en el trabajo?</em></h2>
           <p className="feature-lead">Recibí orientación legal para comprender tus derechos y los pasos que podés seguir.</p>
           <div className="topic-list">

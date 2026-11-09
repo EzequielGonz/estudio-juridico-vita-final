@@ -1,0 +1,47 @@
+/* Pulido visual del 09/11/2026: sin etiquetas sobre los títulos, hero concreto,
+   pie de página ordenado, microinteracciones y entrada escalonada del hero. */
+
+::selection { background: #e7e2ce; color: #112250; }
+html { scroll-behavior: smooth; }
+
+/* Hero: entrada escalonada (título, bajada, botones) */
+.hero-copy { animation: none; }
+.hero-copy > * { animation: hero-arrive .7s cubic-bezier(.2,.7,.2,1) both; }
+.hero-copy > :nth-child(2) { animation-delay: .08s; }
+.hero-copy > :nth-child(3) { animation-delay: .16s; }
+.hero h1 em { position: relative; }
+.hero-description { max-width: 600px; }
+
+/* Botones: respuesta al pasar el mouse y foco visible */
+.button { transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
+.button:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(17, 34, 80, .16); }
+a:focus-visible, button:focus-visible { outline: 2px solid #3b507d; outline-offset: 3px; border-radius: 4px; }
+
+/* Pie de página */
+.site-footer { background: #f4f3ef; border-top: 1px solid #e2ded4; }
+.footer-main { grid-template-columns: 1.5fr .9fr .9fr 1.7fr; gap: 48px; padding-top: 84px; padding-bottom: 64px; }
+.footer-logo { display: inline-flex; align-items: center; gap: 16px; height: auto; margin-bottom: 22px; }
+.footer-logo img { height: 66px; width: auto; max-width: none; }
+.footer-name { display: flex; flex-direction: column; font-family: 'Playfair Display', Georgia, serif; font-size: 25px; line-height: 1.05; color: #112250; }
+.footer-name small { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: #8d8374; margin-top: 7px; }
+.footer-brand p { font-size: 15px; line-height: 1.7; color: #5f5e59; max-width: 340px; margin: 0 0 26px; }
+.footer-cta { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: 999px; background: #112250; color: #fff; font-size: 14px; font-weight: 600; transition: transform .2s ease, background-color .2s ease; }
+.footer-cta:hover { background: #1c2f66; transform: translateY(-1px); }
+.footer-column { gap: 4px; }
+.footer-column h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 19px; font-weight: 500; letter-spacing: 0; color: #112250; margin: 0 0 12px; }
+.footer-column a, .footer-column span { min-height: 36px; font-size: 15px; color: #4a4a46; }
+.footer-column a:hover { color: #112250; }
+.footer-contact a { gap: 12px; white-space: nowrap; }
+.footer-contact svg { color: #b8914a; flex: none; }
+.footer-bottom { font-size: 13px; color: #8a877f; padding-right: 84px; }
+.footer-top { color: #6d6d69; }
+.footer-top:hover { color: #112250; }
+
+@media (max-width: 760px) {
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 40px 24px; padding-top: 60px; padding-bottom: 44px; }
+  .footer-brand, .footer-contact { grid-column: 1 / -1; }
+  .footer-column a, .footer-column span { min-height: 42px; }
+  .footer-contact a { white-space: normal; overflow-wrap: anywhere; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .footer-column a { white-space: nowrap; font-size: 14px; }
+}

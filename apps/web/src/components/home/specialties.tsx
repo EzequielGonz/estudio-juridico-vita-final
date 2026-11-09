@@ -10,7 +10,6 @@ export function Specialties() {
     <section className="specialties section-space" id="especialidades">
       <div className="shell">
         <div className="section-heading">
-          <p className="section-label">Lo que hacemos</p>
           <h2>Áreas de <em>especialización</em></h2>
           <p>Un enfoque atento a cada historia, con la claridad que necesitás para tomar decisiones informadas.</p>
         </div>

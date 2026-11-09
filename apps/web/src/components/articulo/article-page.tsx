@@ -133,7 +133,6 @@ export function ArticlePage({ data, children }: Props) {
       {related.length > 0 && (
         <section className="doc-related">
           <div className="shell">
-            <p className="section-label">Seguí leyendo</p>
             <h2>Guías <em>relacionadas</em></h2>
             <LinkRows links={related} />
           </div>

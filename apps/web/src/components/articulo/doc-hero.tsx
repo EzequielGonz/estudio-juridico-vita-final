@@ -16,7 +16,7 @@ type Props = {
 };
 
 /** Cabecera de artículo: mismas etiquetas, tipografía y botones que el hero de la home. */
-export function DocHero({ label, h1, h1Em, lead, breadcrumbs, updated, origen, whatsappMessage }: Props) {
+export function DocHero({ h1, h1Em, lead, breadcrumbs, updated, origen, whatsappMessage }: Props) {
   const byline = REVIEWER.name
     ? `Revisado por ${REVIEWER.name}${REVIEWER.matricula ? `, ${REVIEWER.matricula}` : ''}`
     : `Equipo legal de ${FIRM_NAME}`;
@@ -34,7 +34,6 @@ export function DocHero({ label, h1, h1Em, lead, breadcrumbs, updated, origen, w
             ))}
           </ol>
         </nav>
-        <p className="hero-label"><span className="label-line" /> {label}</p>
         <h1>{h1} {h1Em && <em>{h1Em}</em>}</h1>
         <p className="doc-lead">{lead}</p>
         <div className="hero-actions">

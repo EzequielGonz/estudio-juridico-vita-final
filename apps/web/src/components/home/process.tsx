@@ -9,7 +9,6 @@ export function Process() {
     <section className="process section-space" id="proceso">
       <div className="shell">
         <div className="section-heading">
-          <p className="section-label">Cómo trabajamos</p>
           <h2>¿Cómo funciona <em>la consulta?</em></h2>
           <p>Un proceso simple para que puedas dar el primer paso con tranquilidad.</p>
         </div>
