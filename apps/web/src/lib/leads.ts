@@ -8,6 +8,8 @@
  *  - 'none'       → no guarda nada; muestra el mensaje de éxito (solo para pruebas).
  * ========================================================================== */
 
+import { datosParaFormulario } from '@/lib/atribucion';
+
 export type LeadsProvider = 'pocketbase' | 'supabase' | 'webhook' | 'none';
 
 /** Desde el 21/10 las consultas van al CRM (Supabase); el agente escribe por WhatsApp a los 5 minutos. */
@@ -63,7 +65,7 @@ export async function submitLead(lead: Lead): Promise<void> {
     }
     case 'webhook': {
       if (!WEBHOOK_URL) throw new Error('Webhook sin configurar');
-      await postJson(WEBHOOK_URL, { ...payload, llegada: typeof document === 'undefined' ? '' : document.referrer });
+      await postJson(WEBHOOK_URL, { ...payload, ...datosParaFormulario() });
       return;
     }
     default:
